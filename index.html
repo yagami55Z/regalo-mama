@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090516">
+<title>Para mamá | Un universo de amor</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #ffb8df;
+  --purple: #c7a0ff;
+  --gold: #ffe4a9;
+  --white: #fff7ff;
+  --bg: #090516;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Poppins, sans-serif;
+}
+
+button { font: inherit; }
+
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 5px;
+}
+
+button:disabled { opacity: .35; }
+
+#universe {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #090516;
+  overflow: hidden;
+}
+
+.galaxy {
+  position: absolute;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
+  object-fit: cover;
+  opacity: 0;
+  filter: brightness(.48) saturate(1.3);
+  transition: opacity 1.8s;
+  animation: drift 28s ease-in-out infinite alternate;
+}
+
+.galaxy.active { opacity: .8; }
+
+@keyframes drift {
+  from { transform: scale(1.02) translate(-1%, 0); }
+  to { transform: scale(1.2) translate(1%, -1%); }
+}
+
+#stars {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.nebula {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, #b05aff30, transparent 45%),
+    radial-gradient(ellipse at 85% 75%, #ff65cb24, transparent 40%),
+    linear-gradient(#08041638, #080416b8);
+  pointer-events: none;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  background: linear-gradient(#080416a8, transparent);
+}
+
+.brand {
+  font-family: Cinzel, serif;
+  font-size: .8rem;
+  letter-spacing: 2px;
+}
+
+.music {
+  flex-shrink: 0;
+  border: 1px solid #ffffff38;
+  border-radius: 30px;
+  background: #ffffff10;
+  color: white;
+  padding: 10px 15px;
+  font-size: .75rem;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+}
+
+/* FECHA DINÁMICA */
+.date-badge {
+  position: fixed;
+  right: 20px;
+  top: 75px;
+  z-index: 12;
+  font-family: Cinzel, serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.progress-wrap {
+  position: fixed;
+  top: 61px;
+  left: 20px;
+  right: 20px;
+  z-index: 10;
+  height: 3px;
+  background: #ffffff20;
+  border-radius: 20px;
+}
+
+#progress {
+  height: 100%;
+  width: 0;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--pink), var(--purple), var(--gold));
+  transition: width .6s ease;
+}
+
+#stepCount {
+  position: fixed;
+  z-index: 10;
+  top: 72px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #e5d1f6;
+  font-size: .7rem;
+  letter-spacing: 2px;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
+  padding: 110px 22px 85px;
+  text-align: center;
+  scrollbar-width: thin;
+  scrollbar-color: #a775c7 transparent;
+}
+
+.screen.active {
+  display: flex;
+  animation: enter .75s ease both;
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(20px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.eyebrow {
+  font-size: .75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  max-width: 100%;
+  color: var(--gold);
+}
+
+/* TEXTO ARCOÍRIS CON CAMBIO DE COLORES */
+.rainbow-text {
+  display: inline-block;
+  font-weight: 600;
+  background: linear-gradient(
+    90deg,
+    #20ff91 0%,
+    #ffffff 24%,
+    #ff354d 48%,
+    #42a5ff 72%,
+    #20ff91 100%
+  );
+  background-size: 300% auto;
+  background-position: 0% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: starColors 4s linear infinite;
+  filter: drop-shadow(0 0 7px #ffffff45);
+}
+
+@keyframes starColors {
+  to { background-position: 300% center; }
+}
+
+h1, h2, h3, .poem {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+}
+
+h1 {
+  margin: 15px 0;
+  font-size: clamp(3.2rem, 8vw, 6rem);
+  line-height: .95;
+  filter: drop-shadow(0 0 24px #d59aff40);
+}
+
+h2 {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1;
+  margin: 15px 0;
+}
+
+h3 {
+  font-size: 1.8rem;
+  margin: 12px 0;
+}
+
+p {
+  color: #e6d9f1;
+  line-height: 1.8;
+}
+
+.intro {
+  width: min(520px, 100%);
+  margin: 8px auto 22px;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-height: 48px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+  line-height: 1.4;
+  border: 1px solid #ffffff50;
+  border-radius: 50px;
+  padding: 13px 28px;
+  margin: 5px;
+  color: white;
+  background: linear-gradient(110deg, #9255d8, #cb579f);
+  box-shadow: 0 7px 30px #b65bdf38;
+  cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.025);
+  box-shadow: 0 10px 35px #c878ff66;
+}
+
+.btn.secondary { background: #ffffff0d; }
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 25px;
+  width: 100%;
+}
+
+.note {
+  font-size: .8rem;
+  color: #c9b7db;
+  margin-top: 15px;
+}
+
+/* RETRATO MAMÁ */
+.portrait-stage {
+  position: relative;
+  width: min(220px, 55vw);
+  height: min(270px, 65vw);
+  margin: 18px auto;
+  flex-shrink: 0;
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 150px 150px 110px 110px;
+  border: 2px solid #ffe0efb5;
+  box-shadow: 0 0 50px #d65dff45, 0 20px 70px #0009;
+  animation: float 5s ease-in-out infinite;
+}
+
+.portrait-stage::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 1px solid var(--gold);
+  border-radius: 160px 160px 120px 120px;
+  animation: pulse 3s infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes float {
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse {
+  from { opacity: .4; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.035); }
+}
+
+/* TARJETAS GALAXIA */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: min(850px, 100%);
+  margin: 20px auto;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  min-height: 165px;
+  border: 1px solid #e4c1ff55;
+  border-radius: 18px;
+  padding: 0;
+  color: white;
+  background: #180d2b;
+  cursor: pointer;
+  transition: transform .3s, border-color .3s;
+}
+
+.card:hover, .card.selected {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+}
+
+.card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(.58);
+  transition: transform .7s;
+}
+
+.card:hover img { transform: scale(1.1); }
+
+.card span {
+  position: absolute;
+  z-index: 1;
+  left: 8px;
+  right: 8px;
+  bottom: 12px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+  text-shadow: 0 2px 8px #000;
+}
+
+.glass {
+  width: min(680px, 100%);
+  padding: clamp(20px, 4vw, 35px);
+  border: 1px solid #ffffff25;
+  border-radius: 25px;
+  background: linear-gradient(140deg, #ffffff12, #ffffff05);
+  box-shadow: 0 20px 80px #0003;
+  backdrop-filter: blur(12px);
+}
+
+.portal {
+  width: 175px;
+  height: 175px;
+  max-width: 55vw;
+  max-height: 55vw;
+  margin: 25px auto;
+  border-radius: 50%;
+  border: 1px solid #f3c8ffbb;
+  background: radial-gradient(circle, #ffb9f33b, #9e6bff16 55%, transparent 70%);
+  box-shadow: 0 0 45px #bb77ff45, inset 0 0 35px #d98cff20;
+  color: white;
+  font-size: 4rem;
+  cursor: pointer;
+  animation: pulse 2s infinite alternate;
+}
+
+.poem {
+  color: #ffe0f1;
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+  line-height: 1.3;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: min(850px, 100%);
+  margin: 20px auto;
+}
+
+.photo {
+  padding: 7px;
+  border: 0;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #ffdbf0, #9b6bff, #ffe5a4);
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.photo:hover {
+  transform: translateY(-5px) rotate(-1deg);
+  box-shadow: 0 0 28px #ffb8df90;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.photo span {
+  display: block;
+  padding: 10px 2px 4px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  color: #160a23;
+}
+
+.letter {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.3rem, 4vw, 1.9rem);
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.hidden { display: none !important; }
+
+#finalReveal {
+  animation: enter .9s ease both;
+}
+
+.toast {
+  position: fixed;
+  z-index: 80;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 90%;
+  padding: 12px 18px;
+  border: 1px solid #f5caff60;
+  border-radius: 30px;
+  background: #170e29f5;
+  color: white;
+  font-size: .8rem;
+  text-align: center;
+}
+
+.lightbox {
+  position: fixed;
+  z-index: 40;
+  inset: 0;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  overflow-y: auto;
+  background: #05030df2;
+  backdrop-filter: blur(12px);
+}
+
+.lightbox img {
+  max-width: min(85vw, 500px);
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 15px;
+  border: 1px solid #ffffff35;
+  box-shadow: 0 0 40px #c87bff55;
+}
+
+footer {
+  position: fixed;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  text-align: center;
+  font-size: .7rem;
+  color: #cbb9db;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  header { padding: 12px; }
+  .brand { font-size: .65rem; }
+  .music { padding: 8px 12px; font-size: .65rem; }
+  .date-badge { top: 65px; right: 12px; font-size: 0.7rem; }
+  .progress-wrap { left: 12px; right: 12px; top: 54px; }
+  #stepCount { top: 62px; font-size: .6rem; }
+  .screen { padding: 90px 15px 60px; }
+  .cards, .gallery { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="universe" aria-hidden="true">
+  <img class="galaxy active" src="imagenes/galaxia1.jpg" alt="">
+  <img class="galaxy" src="imagenes/galaxia2.jpg" alt="">
+  <img class="galaxy" src="imagenes/galaxia3.jpg" alt="">
+  <div class="nebula"></div>
+  <canvas id="stars"></canvas>
+</div>
+
+<header>
+  <div class="brand">✦ UNIVERSO DE YARI ✦</div>
+  <button class="music" id="musicBtn" type="button">♫ Activar música</button>
+</header>
+
+<div class="date-badge rainbow-text" id="currentDate"></div>
+
+<div class="progress-wrap">
+  <div id="progress"></div>
+</div>
+
+<div id="stepCount" aria-live="polite">UNA EXPERIENCIA ESPECIAL</div>
+
+<audio id="music" src="musica.mp3" loop preload="auto"></audio>
+
+<main>
+
+<!-- PANTALLA 1: BIENVENIDA -->
+<section class="screen active" data-title="TU REGALO COMIENZA AQUÍ">
+  <div class="eyebrow rainbow-text">
+    Hoy el universo celebra a una mujer única
+  </div>
+
+  <div class="portrait-stage">
+    <img class="portrait" src="fotos/mama1.jpg" alt="Fotografía de mamá">
+  </div>
+
+  <h1><span class="rainbow-text">Yari,<br>mi estrella eterna</span></h1>
+
+  <p class="intro rainbow-text">
+    Hoy no quiero regalarte algo común.
+    Quiero regalarte un pequeño universo,
+    creado con todo mi amor para ti.
+  </p>
+
+  <button class="btn next" id="startGift" type="button">
+    🎁 Descubrir mi regalo
+  </button>
+
+  <p class="note rainbow-text">Una sorpresa creada por tu hijo, con amor infinito. ❤️</p>
+</section>
+
+<!-- PANTALLA 2: DEDICATORIA -->
+<section class="screen" data-title="UNA DEDICATORIA PARA TI">
+  <div class="eyebrow">Antes de comenzar nuestro viaje</div>
+  <h2>Para la mujer<br>más maravillosa</h2>
+
+  <div class="glass">
+    <div style="font-size:3rem">🌹</div>
+    <p class="poem">
+      Si el cielo tiene millones de estrellas,
+      yo tengo la fortuna de tenerte a ti.
+    </p>
+    <p>
+      Mamá, este pequeño regalo no puede contener
+      todo lo que significas para mí, pero cada detalle
+      está hecho pensando en ti y en lo mucho que te amo.
+    </p>
+  </div>
+
+  <div class="navigation">
+    <button class="btn secondary prev" type="button">← Volver</button>
+    <button class="btn next" type="button">Continuar nuestro viaje ✨</button>
+  </div>
+</section>
+
+<!-- PANTALLA 3: GALAXIAS -->
+<section class="screen" data-title="ELIGE TU GALAXIA">
+  <div class="eyebrow">Tres puertas a la magia</div>
+  <h2>¿Qué universo<br>quieres descubrir?</h2>
+  <p class="intro">Toca una galaxia y observa cómo cambia el cielo.</p>
+
+  <div class="cards">
+    <button class="card" data-galaxy="0" type="button">
+      <img src="imagenes/galaxia1.jpg" alt="">
+      <span>✨ Universo de luz</span>
+    </button>
+
+    <button class="card" data-galaxy="1" type="button">
+      <img src="imagenes/galaxia2.jpg" alt="">
+      <span>🌠 Sueños bonitos</span>
+    </button>
+
+    <button class="card" data-galaxy="2" type="button">
+      <img src="imagenes/galaxia3.jpg" alt="">
+      <span>💗 Estrellas eternas</span>
+    </button>
+  </div>
+
+  <p id="galaxyMessage" aria-live="polite">
+    Elige una galaxia para revelar su mensaje.
+  </p>
+
+  <div class="navigation">
+    <button class="btn secondary prev" type="button">← Volver</button>
+    <button class="btn next" type="button">Siguiente sorpresa →</button>
+  </div>
+</section>
+
+<!-- PANTALLA 4: RECUERDOS -->
+<section class="screen" data-title="RECUERDOS QUE BRILLAN">
+  <div class="eyebrow">Pequeños recuerdos, un amor inmenso</div>
+  <h2>Mi mamá hermosa</h2>
+
+  <p class="intro">
+    Toca una fotografía para verla más de cerca.
+    Cada imagen guarda una parte de este regalo.
+  </p>
+
+  <div class="gallery">
+    <button class="photo" data-photo="1" type="button">
+      <img src="fotos/mama1.jpg" alt="Recuerdo de mamá">
+      <span>Mi estrella ✨</span>
+    </button>
+
+    <button class="photo" data-photo="2" type="button">
+      <img src="fotos/mama2.jpg" alt="Recuerdo de mamá">
+      <span>Mi orgullo 🌹</span>
+    </button>
+
+    <button class="photo" data-photo="3" type="button">
+      <img src="fotos/mama3.jpg" alt="Recuerdo de mamá">
+      <span>Mi tesoro 💗</span>
+    </button>
+  </div>
+
+  <div class="navigation">
+    <button class="btn secondary prev" type="button">← Volver</button>
+    <button class="btn next" type="button">Tengo otra sorpresa para ti 💖</button>
+  </div>
+</section>
+
+<!-- PANTALLA 5: PORTAL -->
+<section class="screen" data-title="UN PORTAL DE DESEOS">
+  <div class="eyebrow">Pide un deseo, mamá</div>
+  <h2>El portal de la felicidad</h2>
+
+  <div class="glass">
+    <p>Toca el corazón mágico para recibir un deseo especial.</p>
+
+    <button class="portal" id="portal" type="button" aria-label="Descubrir un deseo">
+      ✧
+    </button>
+
+    <div class="poem" id="wish" aria-live="polite">
+      Hay un universo entero deseando verte feliz.
+    </div>
+
+    <button class="btn secondary" id="wishBtn" type="button">🌠 Otro deseo</button>
+  </div>
+
+  <div class="navigation">
+    <button class="btn secondary prev" type="button">← Volver</button>
+    <button class="btn next" type="button">Abrir mi carta 💌</button>
+  </div>
+</section>
+
+<!-- PANTALLA 6: CARTA -->
+<section class="screen" data-title="UNA CARTA DESDE EL CORAZÓN">
+  <div class="eyebrow">Hay algo que quiero decirte</div>
+  <h2>Mi carta para ti</h2>
+
+  <div class="glass">
+    <div style="font-size:3rem">💌</div>
+
+    <p class="intro">
+      Hay palabras que a veces no decimos lo suficiente.
+      Hoy quiero que las leas con calma.
+    </p>
+
+    <button class="btn" id="openLetter" type="button">💗 Abrir mi corazón</button>
+
+    <div id="letterReveal" class="hidden">
+      <p class="letter">Mamá:
+
+Gracias por ser una parte tan importante de mi vida.
+Hoy, en tu cumpleaños, deseo que la vida te devuelva
+multiplicado todo lo bonito que mereces.
+
+Quiero verte sonreír, cumplir tus sueños y disfrutar
+muchos momentos felices. Ningún regalo podría
+expresar por completo lo importante que eres para mí.
+
+Espero que este pequeño universo te recuerde siempre
+que tienes un hijo que te ama con todo su corazón.
+
+Feliz cumpleaños, mamá hermosa. 🌹
+
+Con todo mi amor,
+tu hijo. ❤️</p>
+
+      <button class="btn next" id="letterContinue" type="button">
+        Descubrir el regalo final ✨
+      </button>
+    </div>
+  </div>
+
+  <div class="navigation">
+    <button class="btn secondary prev" type="button">← Volver</button>
+  </div>
+</section>
+
+<!-- PANTALLA 7: GRAN FINAL -->
+<section class="screen" data-title="TU SORPRESA FINAL">
+  <div class="eyebrow">El último secreto de este universo</div>
+
+  <div style="font-size:4rem; animation: float 3s infinite">💗✨🌹</div>
+
+  <h1 style="font-size:clamp(3rem,9vw,5.5rem)">
+    Feliz cumpleaños,<br>mamá
+  </h1>
+
+  <div class="glass">
+    <p class="poem">
+      De todos los regalos que me dio la vida,
+      uno de los más bonitos es poder llamarte mamá.
+    </p>
+
+    <button class="btn" id="finalBtn" type="button">
+      💖 Abrir mi última sorpresa
+    </button>
+
+    <div id="finalReveal" class="hidden">
+      <p class="letter">
+        Si pudiera regalarte todas las estrellas,
+        las pondría a tus pies.
+
+        Si pudiera pedir un deseo al universo,
+        pediría que tengas salud, paz y muchísimos
+        cumpleaños más rodeada de amor.
+
+        <span style="color:#ffe3a5">Te amo muchísimo, mamá. ❤️</span>
+      </p>
+
+      <div style="font-size:2rem">🎆 💐 🎂 🎆</div>
+      <p>Este universo siempre tendrá una estrella para ti.</p>
+
+      <button class="btn" id="celebrateBtn" type="button">🎉 ¡Celebrar contigo!</button>
+      <button class="btn secondary" id="restartBtn" type="button">↻ Volver a vivir el regalo</button>
+    </div>
+  </div>
+
+  <div class="navigation">
+    <button class="btn secondary prev" type="button">← Volver</button>
+  </div>
+</section>
+
+</main>
+
+<footer>Creado con amor infinito para Yari Alejandro Cruz ♥</footer>
+
+<div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Fotografía ampliada">
+  <button class="btn" id="closePhoto" type="button">✕ Cerrar fotografía</button>
+  <img id="largePhoto" src="" alt="Fotografía ampliada de mamá">
+  <p id="photoCaption" class="poem"></p>
+</div>
+
+<div id="toast" class="toast hidden" role="status"></div>
+
+<script>
+"use strict";
+
+/* FECHA DINÁMICA DE HOY EN UN COSTADO */
+const today = new Date();
+const day = String(today.getDate()).padStart(2, '0');
+const month = String(today.getMonth() + 1).padStart(2, '0');
+const year = today.getFullYear();
+document.getElementById('currentDate').innerText = `FECHA: ${day}/${month}/${year}`;
+
+/* CANVAS DE ESTRELLAS Y ESTRELLAS FUGACES */
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+let width, height;
+let stars = [];
+let shootingStars = [];
+
+function resize() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+for (let i = 0; i < 120; i++) {
+  stars.push({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    size: Math.random() * 1.8,
+    alpha: Math.random(),
+    speed: Math.random() * 0.005 + 0.002
+  });
+}
+
+function addShootingStar() {
+  shootingStars.push({
+    x: Math.random() * width,
+    y: 0,
+    len: Math.random() * 80 + 40,
+    speed: Math.random() * 10 + 6,
+    angle: Math.PI / 4 + (Math.random() * 0.2 - 0.1),
+    alpha: 1
+  });
+}
+
+setInterval(() => {
+  if (Math.random() < 0.6) addShootingStar();
+}, 2200);
+
+function animateUniverse() {
+  ctx.clearRect(0, 0, width, height);
+  
+  // Dibujar estrellas fijas parpadeantes
+  stars.forEach(s => {
+    s.alpha += s.speed;
+    if (s.alpha > 1 || s.alpha < 0.2) s.speed = -s.speed;
+    ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(s.alpha)})`;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // Dibujar estrellas fugaces
+  shootingStars.forEach((ss, index) => {
+    ss.x += Math.cos(ss.angle) * ss.speed;
+    ss.y += Math.sin(ss.angle) * ss.speed;
+    ss.alpha -= 0.015;
+
+    let grad = ctx.createLinearGradient(
+      ss.x, ss.y,
+      ss.x - Math.cos(ss.angle) * ss.len,
+      ss.y - Math.sin(ss.angle) * ss.len
+    );
+    grad.addColorStop(0, `rgba(255, 255, 255, ${ss.alpha})`);
+    grad.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(ss.x, ss.y);
+    ctx.lineTo(
+      ss.x - Math.cos(ss.angle) * ss.len,
+      ss.y - Math.sin(ss.angle) * ss.len
+    );
+    ctx.stroke();
+
+    if (ss.alpha <= 0 || ss.x > width || ss.y > height) {
+      shootingStars.splice(index, 1);
+    }
+  });
+
+  requestAnimationFrame(animateUniverse);
+}
+animateUniverse();
+
+/* NAVEGACIÓN ENTRE PANTALLAS */
+const screens = [...document.querySelectorAll(".screen")];
+const progress = document.getElementById("progress");
+const stepCount = document.getElementById("stepCount");
+let currentStep = 0;
+
+function updateNavigation() {
+  screens.forEach((scr, idx) => {
+    scr.classList.toggle("active", idx === currentStep);
+  });
+  const percentage = ((currentStep + 1) / screens.length) * 100;
+  progress.style.width = `${percentage}%`;
+  const activeScreen = screens[currentStep];
+  stepCount.textContent = activeScreen.dataset.title || `PASO ${currentStep + 1}`;
+}
+
+document.querySelectorAll(".btn.next").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (currentStep < screens.length - 1) {
+      currentStep++;
+      updateNavigation();
+    }
+  });
+});
+
+document.querySelectorAll(".btn.prev").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (currentStep > 0) {
+      currentStep--;
+      updateNavigation();
+    }
+  });
+});
+
+/* REPRODUCTOR DE MÚSICA & BOTÓN DESCUBRIR MI REGALO */
+const musicBtn = document.getElementById("musicBtn");
+const music = document.getElementById("music");
+const startGiftBtn = document.getElementById("startGift");
+let isPlaying = false;
+
+function toggleMusicPlay() {
+  if (!isPlaying) {
+    music.play().then(() => {
+      musicBtn.textContent = "⏸ Pausar música";
+      isPlaying = true;
+    }).catch(() => {
+      console.log("Audio play blocked");
+    });
+  }
+}
+
+musicBtn.addEventListener("click", () => {
+  if (!isPlaying) {
+    toggleMusicPlay();
+  } else {
+    music.pause();
+    musicBtn.textContent = "♫ Activar música";
+    isPlaying = false;
+  }
+});
+
+// Al hacer clic en "Descubrir mi regalo" arranca la música y avanza de pantalla
+startGiftBtn.addEventListener("click", () => {
+  toggleMusicPlay();
+  if (currentStep < screens.length - 1) {
+    currentStep++;
+    updateNavigation();
+  }
+});
+
+/* SELECCIÓN DE GALAXIAS */
+const galaxies = document.querySelectorAll(".galaxy");
+const cards = document.querySelectorAll(".card");
+const galaxyMessage = document.getElementById("galaxyMessage");
+
+const messages = [
+  "✨ Has elegido el Universo de Luz: Que tu camino siempre esté iluminado de paz y alegría.",
+  "🌠 Has elegido Sueños Bonitos: Que cada anhelo de tu corazón se cumpla pronto.",
+  "💗 Has elegido Estrellas Eternas: El amor por ti durará por siempre."
+];
+
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+    const idx = parseInt(card.dataset.galaxy, 10);
+    galaxies.forEach((g, i) => g.classList.toggle("active", i === idx));
+    cards.forEach(c => c.classList.remove("selected"));
+    card.classList.add("selected");
+    galaxyMessage.textContent = messages[idx];
+  });
+});
+
+/* LIGHTBOX DE FOTOS */
+const photos = document.querySelectorAll(".photo");
+const lightbox = document.getElementById("lightbox");
+const largePhoto = document.getElementById("largePhoto");
+const photoCaption = document.getElementById("photoCaption");
+const closePhoto = document.getElementById("closePhoto");
+
+const captions = {
+  "1": "Mi estrella brillante ✨",
+  "2": "Mi orgullo siempre 🌹",
+  "3": "Mi mayor tesoro 💗"
+};
+
+photos.forEach(photo => {
+  photo.addEventListener("click", () => {
+    const photoId = photo.dataset.photo;
+    const imgObj = photo.querySelector("img");
+    largePhoto.src = imgObj.src;
+    photoCaption.textContent = captions[photoId] || "";
+    lightbox.classList.remove("hidden");
+  });
+});
+
+closePhoto.addEventListener("click", () => {
+  lightbox.classList.add("hidden");
+});
+
+/* PORTAL DE DESEOS */
+const portal = document.getElementById("portal");
+const wishBtn = document.getElementById("wishBtn");
+const wishText = document.getElementById("wish");
+
+const wishes = [
+  "🌸 Deseo que cada día de tu vida esté lleno de risas y momentos hermosos.",
+  "💖 Deseo que nunca te falte salud, amor y serenidad en tu hogar.",
+  "✨ Deseo que sigas iluminando nuestras vidas con tu amor incondicional.",
+  "🌷 Deseo que todos tus proyectos y metas se conviertan en realidad."
+];
+
+function getRandomWish() {
+  const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+  wishText.textContent = randomWish;
+}
+
+portal.addEventListener("click", getRandomWish);
+wishBtn.addEventListener("click", getRandomWish);
+
+/* ABRIR CARTA Y REVELAR FINAL */
+const openLetter = document.getElementById("openLetter");
+const letterReveal = document.getElementById("letterReveal");
+
+openLetter.addEventListener("click", () => {
+  letterReveal.classList.remove("hidden");
+  openLetter.classList.add("hidden");
+});
+
+const finalBtn = document.getElementById("finalBtn");
+const finalReveal = document.getElementById("finalReveal");
+
+finalBtn.addEventListener("click", () => {
+  finalReveal.classList.remove("hidden");
+  finalBtn.classList.add("hidden");
+});
+
+const restartBtn = document.getElementById("restartBtn");
+restartBtn.addEventListener("click", () => {
+  currentStep = 0;
+  updateNavigation();
+});
+
+updateNavigation();
+</script>
+</body>
+</html>
